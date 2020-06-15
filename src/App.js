@@ -1,30 +1,45 @@
-import React, {useEffect} from "react";
+import React, { useState } from "react";
 import {
+  Button,
   Card,
   ComponentsProvider,
   CardContent,
   Box,
+  Text,
 } from "@looker/components";
-import Highcharts from 'highcharts'
+import { Highchart } from "./Highchart";
 import "./App.css";
+import ReactCardFlip from "react-card-flip";
 
 function App() {
+  const [isFlipped, setFlipped] = useState(false);
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    setFlipped(!isFlipped);
+  };
 
-useEffect(() => {
-  Highcharts.chart('container', demoHighcharts)
-})
   return (
     <div className="App">
       <header className="App-header">
         <ComponentsProvider>
-          <Card raised>
-            <CardContent>
-              <Box width={'400px'}>
-                <div id="container" />
-              </Box>
-            </CardContent>
-          </Card>
+          <Button onClick={handleClick}>Click to flip </Button>
+          <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
+            <Card>
+              <CardContent>
+                <Box width={"400px"} height={"400px"}>
+                  <Highchart />
+                </Box>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent>
+                <Box width={"400px"} height={"400px"}>
+                  <Text>Wow this is great</Text>
+                </Box>
+              </CardContent>
+            </Card>
+          </ReactCardFlip>
         </ComponentsProvider>
       </header>
     </div>
@@ -32,28 +47,3 @@ useEffect(() => {
 }
 
 export default App;
-
-
-const demoHighcharts = {
-  chart: {
-      type: 'bar'
-  },
-  title: {
-      text: 'Fruit Consumption'
-  },
-  xAxis: {
-      categories: ['Apples', 'Bananas', 'Oranges']
-  },
-  yAxis: {
-      title: {
-          text: 'Fruit eaten'
-      }
-  },
-  series: [{
-      name: 'Jane',
-      data: [1, 0, 4]
-  }, {
-      name: 'John',
-      data: [5, 7, 3]
-  }]
-}
