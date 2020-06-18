@@ -13,6 +13,7 @@ import {
   Box,
   SpaceVertical,
   CardContent,
+  Text
 } from "@looker/components";
 import CardFlip from "react-card-flip";
 import {Highchart} from './Highchart';
@@ -34,7 +35,7 @@ export const ReactCardFlip = () => {
   };
 
   return (
-    <Box>
+    <Box width="800px">
       <Grid gap="xxxlarge">
         <Box>
           <CardFlip
@@ -50,18 +51,23 @@ export const ReactCardFlip = () => {
             <Card width={"400px"} height={"400px"}>
               <Card>
                 <CardContent>
-                  <Paragraph> Last Run: Just now</Paragraph>
+                  <Paragraph> <Text fontWeight={'bold'}>Last Run:</Text> Just now</Paragraph>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent>
-                  <Paragraph> Filters applied to this tile:</Paragraph>
+                  <Paragraph> <Text fontWeight={'bold'}>Filters applied to this tile:</Text></Paragraph>
                   <Paragraph> Filter1, filter 2, filter 3</Paragraph>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent>
-                  <Paragraph> Auto Refresh: every 5 minutes</Paragraph>
+                  <Paragraph>  <Text fontWeight={'bold'}>Auto Refresh:</Text> every 5 minutes</Paragraph>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent>
+                  <Paragraph> <Text fontWeight={'bold'}>Query Timezone:</Text> Query Timezone: GMAT</Paragraph>
                 </CardContent>
               </Card>
             </Card>
@@ -75,7 +81,7 @@ export const ReactCardFlip = () => {
               <ButtonItem>vertical</ButtonItem>
             </ButtonToggle>
             <Label htmlFor="infiniteSwitch">
-              Infinite rotation
+              <Text paddingRight={'10px'}>Infinite rotation</Text>
               <ToggleSwitch
                 onChange={handleInfiniteToggle}
                 on={infinite}
@@ -89,7 +95,7 @@ export const ReactCardFlip = () => {
             <Slider
               width={"400px"}
               min={0}
-              max={2}
+              max={4}
               step={0.1}
               onChange={onFlipSpeed}
               value={flipSpeed}
